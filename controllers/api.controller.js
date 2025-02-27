@@ -13,10 +13,3 @@ exports.Monitorapi = BigPromise(async(req,res,next)=>{
 })
 
 
-exports.configureApiMonitoring = BigPromise(async(req,res,next)=>{
-    try{
-    logger.info(`INFO || Conifguring api monitoring in cache for api : ${req.body.apiId}`)
-    }catch(err){
-        console.log(err);
-    }
-})

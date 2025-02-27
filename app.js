@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { checkMonitoring } = require("./middlewares/check.monitoring.middleware");
 const monitoringRouter = require("./routes/api.routes");
+const configRouter = require("./routes/config.route");
 
 // middlewares
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(morgan("tiny"));
 
 
 // routes
+app.use("/api/v1",configRouter);
 app.use("/api/v1/cache",checkMonitoring,monitoringRouter);
 
 // home route
