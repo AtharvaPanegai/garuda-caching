@@ -61,7 +61,7 @@ class MainQueue{
             throw new Error(`Channel not created yet.Please create channel first`);
         }
         
-        if(!this.consumers[actionName]){
+        if(this.consumers[actionName]){
             logger.info(`INFO || Consumer with actionName : ${actionName} already exists returning`);
             return this.consumers[actionName];
         }
