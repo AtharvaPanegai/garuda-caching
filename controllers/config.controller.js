@@ -16,7 +16,7 @@ exports.configureApiMonitoring = BigPromise(async(req,res,next)=>{
         });
     }
 
-    const redisKey = `${projectId}${apiPath}`;
+    const redisKey = `${projectId}/${apiPath}`;
     await setRedisKeyValue(redisKey,isMonitoring);
 
     logger.info(`INFO || Monitoring for the api is set ${isMonitoring} to api : ${apiPath}`);
