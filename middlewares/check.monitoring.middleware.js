@@ -11,7 +11,6 @@ exports.checkMonitoring = async (req, res, next) => {
     const redisKey = `${projectId}${apiPath}`; 
 
     const monitoringStatus = await redis.get(redisKey);
-    console.log(monitoringStatus)
     if (monitoringStatus !== 'true') {
         res.status(201).json({
             message: "monitoring isn't enabled for this api yet",
