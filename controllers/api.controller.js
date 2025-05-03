@@ -14,11 +14,20 @@ exports.Monitorapi = BigPromise(async(req,res,next)=>{
             let options = {
                 method: 'POST',
                 url: `${process.env.GARUDA_API}/radar/monitorapi`, 
-                headers: req.headers,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': req.headers['apikey'], 
+                },        
                 data : req.body,
             };
+            logger.debug(`DEBUG || Request to garuda-api : ${JSON.stringify(options)}`);
             let resp = await axios(options)
-            logger.info(`INFO || Response from garuda-api : ${resp.data}`);
+            logger.info(`INFO || Response from garuda-api : ${JSON.stringify(resp.data)}`);
+            return res.status(200).json({
+                message : "Hit Recorded! for Error and API Down... Alert Email Sent!",
+                statusCode : 200,
+                data : resp.data
+            });
         }catch(err){
             logger.error(`Error || Error in sending apiLogInfo to garuda-api`);
             logger.error(err);
